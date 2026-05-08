@@ -1,0 +1,182 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #000; /* Preto */
+  color: #fff; /* Branco */
+  line-height: 1.6;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+nav {
+  background-color: #000; /* Preto */
+  border-bottom: 3px solid #FFD700; /* Amarelo ouro */
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  margin-left: 20px; /* espaço entre logo e links */
+}
+
+.nav-links a {
+  color: #FFD700; /* Amarelo ouro */
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: font-size 0.3s ease;
+}
+
+.nav-links a:hover {
+  font-size: 18px;
+}
+
+/* Formulário de filtro */
+.filtro {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  width: 60vw;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+form label {
+  font-weight: bold;
+  color: #FFD700;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);   /* inverte a cor, deixando branco */
+  cursor: pointer;
+}
+
+form input, form button, form a {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+}
+
+form input {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+form button {
+  background-color: #FFD700;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #FFD700;
+}
+
+form a {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Container da tabela com rolagem horizontal */
+.table-container {
+  margin-top: 30px;
+  width: 95vw;              /* largura máxima visível na tela */
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  overflow-x: auto;         /* ativa rolagem horizontal */
+  overflow-y: hidden;       /* remove rolagem vertical */
+  text-align: left;         /* garante alinhamento à esquerda */
+}
+
+/* Tabela */
+table {
+  width: 100%;            /* largura fixa maior que o container */
+  border-collapse: collapse;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  margin: 0;                /* remove margens extras */
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #FFD700;
+  white-space: nowrap;      /* impede quebra de linha nas células */
+}
+
+table th {
+  background-color: #FFD700;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Área de ações na tabela */
+table td .acoes {
+  display: flex;
+  gap: 12px;              /* espaçamento entre os botões */
+  justify-content: center;
+}
+
+/* Botões dentro da tabela */
+table button, table a {
+  padding: 6px 10px;     /* tamanho reduzido */
+  font-size: 13px;       /* fonte menor */
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;     
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Botão Deletar */
+.btn-deletar {
+  background-color: #d60700; /* vermelho */
+  color: #fff;
+}
+
+/* Botão Editar */
+.btn-editar {
+  background-color: #005aa9; /* azul */
+}
+.btn-editar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Botão Gerar Email */
+.btn-email {
+  background-color: #FFD700; /* dourado */
+  color: #000;
+}

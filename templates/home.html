@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPR System O-I</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style/login.css')}}">
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="logo-section">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo O-I" class="logo" alt="Logo O-I" class="logo">
+        <h1>Bem vindo</h1>
+        <h2>MPR System O-I</h2>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="login-box">
+        <h3>Acesse sua conta</h3>
+        <input type="text" placeholder="Usuário ou E-mail" id="username">
+        <input type="password" placeholder="Senha" id="password">
+        <button id="loginBtn">Entrar</button>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

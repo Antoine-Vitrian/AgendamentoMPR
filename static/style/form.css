@@ -1,0 +1,129 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #000; /* Preto */
+  color: #fff; /* Branco */
+  line-height: 1.6;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+nav {
+  background-color: #000; /* Preto */
+  border-bottom: 3px solid #FFD700; /* Amarelo ouro */
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  margin-left: 20px; /* espaço entre logo e links */
+}
+
+.nav-links a {
+  color: #FFD700; /* Amarelo ouro */
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: font-size 0.3s ease;
+}
+
+.nav-links a:hover {
+  font-size: 18px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);   /* inverte a cor, deixando branco */
+  cursor: pointer;
+}
+
+/* Formulário */
+form {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 40px;
+  width: 50vw;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); /* Amarelo ouro */
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #fff;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 14px;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+form input:focus, form select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px #FFD700; /* Amarelo */
+}
+
+option {
+  color: black;
+}
+
+/* Botão */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #FFD700; /* Amarelo para branco */
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px #FFD700;
+}
+
+/* Mensagens */
+ul {
+  list-style: none;
+  margin: 15px 0;
+  padding: 0;
+}
+
+li {
+  color: #FFD700; /* Amarelo */
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style/visualizar.css')}}">
+    <script>
+        // Função para copiar texto para a área de transferência
+        function copiarEmail(emailTexto) {
+            navigator.clipboard.writeText(emailTexto).then(function() {
+                alert("E-mail copiado para a área de transferência!");
+            }).catch(function(err) {
+                alert("Erro ao copiar: " + err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Menu de navegação -->
+    <nav>
+        <div class="navbar-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('formulario') }}">Formulário</a>
+            <a href="{{ url_for('visualizar') }}">Visualizar Agendamentos</a>
+            <a href="{{ url_for('home') }}">Sair</a>
+        </div>
+        </div>
+    </nav>
+    <br>
+    <h1>Lista de Agendamentos</h1>
+
+    <!-- Formulário de filtro -->
+    <form method="POST" class="filtro" action="{{ url_for('visualizar') }}">
+        <label for="data_filtro">Filtrar por data:</label>
+        <input type="date" id="data_filtro" name="data_filtro" value="{{ data_filtro }}">
+        <button type="submit">Filtrar</button>
+        <a href="{{ url_for('visualizar') }}">Limpar filtro</a>
+    </form>
+
+    <br>
+
+    <div class="table-container">
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Empresa</th>
+                <th>Transportadora</th>
+                <th>Placa</th>
+                <th>Cavalo</th>
+                <th>Nome Motorista</th>
+                <th>RG Motorista</th>
+                <th>Nota Fiscal</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+            {% for reg in registros %}
+            <tr>
+                <td>{{ reg[0] }}</td>
+                <td>{{ reg[1] }}</td>
+                <td>{{ reg[2] }}</td>
+                <td>{{ reg[3] }}</td>
+                <td>{{ reg[4] }}</td>
+                <td>{{ reg[5] }}</td>
+                <td>{{ reg[6] }}</td>
+                <td>{{ reg[7] }}</td>
+                <td>{{ reg[8] }}</td>
+                <td>{{ reg[9] }}</td>
+                <td>{{ reg[10] }}</td>
+                <td class="acoes">
+                    <!-- Botão Editar -->
+                     <button class="btn-editar">
+                        <a href="{{ url_for('editar', id=reg[0]) }}">Editar</a>
+                     </button>
+
+                    <!-- Botão Deletar -->
+                    <form action="{{ url_for('deletar', id=reg[0]) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn-deletar" onclick="return confirm('Tem certeza que deseja deletar este agendamento?');">
+                            Deletar
+                        </button>
+                        <!-- Botão Gerar Email -->
+                        <button type="button" class="btn-email" onclick="copiarEmail(
+                        `Prezados,
+
+                        Seu agendamento foi confirmado:
+                        
+                        - Senha: {{ reg[0] }}
+                        - Tipo: {{ reg[2] }}
+                        - Empresa: {{ reg[3] }}
+                        - Transportadora: {{ reg[4] }}
+                        - Placa: {{ reg[5] }}
+                        - Cavalo: {{ reg[6] }}
+                        - Motorista: {{ reg[7] }} 
+                        - RG: {{ reg[8] }}
+                        - Nota Fiscal: {{ reg[9] }}
+                        - Data: {{ reg[10] }}
+
+                        Atenciosamente,
+                        Equipe de MPR`
+                                        )">
+                            Gerar Email
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>
+

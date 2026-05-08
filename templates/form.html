@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Carros</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style/form.css')}}">
+</head>
+<body>
+  <!-- Menu de navegação -->
+  <nav>
+    <div class="navbar-container">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo">
+      </div>
+      <div class="nav-links">
+        <a href="{{ url_for('formulario') }}">Formulário</a>
+        <a href="{{ url_for('visualizar') }}">Visualizar Agendamentos</a>
+        <a href="{{ url_for('home') }}">Sair</a>
+      </div>
+    </div>
+  </nav>
+
+
+    <br>
+    <h1>Agendamento MPR</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li">{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/formulario">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" value="{{ dados.get('email','') }}" required>
+      <br>
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Selecione...</option>
+        <option value="Sucata">Sucata</option>
+        <option value="Transferência">Tranferência</option>
+        <option value="Devolução de Material">Devolução de Material</option>
+      </select>
+      <br>
+      <label for="empresa">Empresa:</label>
+      <input type="text" id="empresa" name="empresa" value="{{ dados.get('empresa','') }}" required>
+      <br>
+      <label for="transportadora">Transportadora:</label>
+      <input type="text" id="transportadora" name="transportadora" value="{{ dados.get('transportadora','') }}" required>
+      <br>
+      <label for="placa">Placa:</label>
+      <input type="text" id="placa" name="placa" value="{{ dados.get('placa','') }}" required>
+      <br>
+      <label for="cavalo">Cavalo:</label>
+      <input type="text" id="cavalo" name="cavalo" value="{{ dados.get('cavalo','') }}" required>
+      <br>
+      <label for="nome_motorista">Nome do Motorista:</label>
+      <input type="text" id="nome_motorista" name="nome_motorista" value="{{ dados.get('nome_motorista','') }}" required>
+      <br>
+      <label for="rg_motorista">RG do Motorista:</label>
+      <input type="text" id="rg_motorista" name="rg_motorista" value="{{ dados.get('rg_motorista','') }}" required>
+      <br>
+      <label for="nota_fiscal">Nota Fiscal:</label>
+      <input type="text" id="nota_fiscal" name="nota_fiscal" value="{{ dados.get('nota_fiscal','') }}" required>
+      <br>
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" value="{{ dados.get('data','') }}" required>
+      <br>
+      <button type="submit">Enviar</button>
+    </form>
+
+
+
+<script>
+  const input = document.getElementById("data");
+  const hoje = new Date().toISOString().split("T")[0];
+  input.setAttribute("min", hoje);
+
+  input.addEventListener("input", function () {
+    const data = new Date(this.value);
+    if (data.getDay() === 0) { // domingo
+      alert("Domingos não são permitidos!");
+      this.value = "";
+    }
+  });
+
+  // Se o backend indicar que o limite foi atingido
+  {% if limite_atingido %}
+    window.onload = function() {
+      if (confirm("O limite de carros já foi atingido. Deseja adicionar mesmo assim?")) {
+        const form = document.querySelector("form");
+        const hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = "forcar";
+        hidden.value = "true";
+        form.appendChild(hidden);
+        form.submit();
+      } else {
+        document.querySelector("form").reset();
+      }
+    }
+  {% endif %}
+</script>
+</body>
+</html>

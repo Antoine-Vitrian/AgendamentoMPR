@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Agendamento</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style/editar.css')}}">
+</head>
+<body>
+    <!-- Menu de navegação -->
+    <nav>
+        <div class="navbar-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('formulario') }}">Formulário</a>
+            <a href="{{ url_for('visualizar') }}">Visualizar Agendamentos</a>
+            <a href="{{ url_for('home') }}">Sair</a>
+        </div>
+        </div>
+    </nav>
+
+    <br>
+    <h1>Editar Agendamento</h1>
+
+    <form method="POST">
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ registro[1] }}" required>
+
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" name="tipo" required>
+            <option value="" {% if registro[2] == "" %}selected{% endif %}>Selecione...</option>
+            <option value="Sucata" {% if registro[2] == "Sucata" %}selected{% endif %}>Sucata</option>
+            <option value="Transferência" {% if registro[2] == "Transferência" %}selected{% endif %}>Transferência</option>
+            <option value="Devolução de Material" {% if registro[2] == "Devolução de Material" %}selected{% endif %}>Devolução de Material</option>
+        </select>
+
+
+        <label>Empresa:</label>
+        <input type="text" name="empresa" value="{{ registro[3] }}" required>
+
+        <label>Transportadora:</label>
+        <input type="text" name="transportadora" value="{{ registro[4] }}" required>
+
+        <label>Placa:</label>
+        <input type="text" name="placa" value="{{ registro[5] }}" required>
+
+        <label>Cavalo:</label>
+        <input type="text" name="cavalo" value="{{ registro[6] }}" required>
+
+        <label>Nome Motorista:</label>
+        <input type="text" name="nome_motorista" value="{{ registro[7] }}" required>
+
+        <label>RG Motorista:</label>
+        <input type="text" name="rg_motorista" value="{{ registro[8] }}" required>
+        <label>Nota Fiscal:</label>
+        <input type="text" name="nota_fiscal" value="{{ registro[9] }}" required>
+
+        <label>Data:</label>
+        <input type="date" name="data" value="{{ registro[10] }}" required>
+
+        <button type="submit">Salvar Alterações</button>
+        <div id="vazia"></div>
+        <button id="cancel">
+            <a href="{{ url_for('visualizar') }}">Cancelar</a>
+        </button>
+        
+        
+    </form>
+</body>
+</html>
