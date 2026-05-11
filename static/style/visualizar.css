@@ -131,7 +131,7 @@ table {
 table th, table td {
   padding: 10px;
   text-align: center;
-  border: 1px solid #FFD700;
+  border: 1px solid #ffd900;
   white-space: nowrap;      /* impede quebra de linha nas células */
 }
 
@@ -166,9 +166,18 @@ table button, table a {
   color: #fff;
 }
 
+.btn-deletar:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #ff2600;
+}
+
 /* Botão Editar */
 .btn-editar {
   background-color: #005aa9; /* azul */
+}
+.btn-editar:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #002aff;
 }
 .btn-editar a {
   text-decoration: none;
@@ -179,4 +188,13 @@ table button, table a {
 .btn-email {
   background-color: #FFD700; /* dourado */
   color: #000;
+}
+
+#excel-btn{
+  background-color: #00815a; /* dourado */
+  color: #ffffff;
+}
+#excel-btn:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #00ffaa;
 }

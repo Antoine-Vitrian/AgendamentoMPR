@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Agendamentos</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style/visualizar.css')}}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
         // Função para copiar texto para a área de transferência
         function copiarEmail(emailTexto) {
@@ -12,6 +13,27 @@
             }).catch(function(err) {
                 alert("Erro ao copiar: " + err);
             });
+        };
+
+        function exportarExcel(){
+            const tabela = document.getElementById("tabelaVisualizar")
+            const linhas = []
+
+            for (let i = 0; i < tabela.rows.length; i++) {
+                const row = [];
+                for (let j = 0; j < tabela.rows[i].cells.length; j++) {
+                // Ignora a coluna 12 (índice 11, já que começa em 0)
+                if (j === 11) continue;
+                row.push(tabela.rows[i].cells[j].innerText);
+                }
+                linhas.push(row);
+            }
+
+            const ws = XLSX.utils.aoa_to_sheet(linhas);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Tabela");
+
+            XLSX.writeFile(wb, "tabelaMPR.xlsx");
         }
     </script>
 </head>
@@ -38,12 +60,13 @@
         <input type="date" id="data_filtro" name="data_filtro" value="{{ data_filtro }}">
         <button type="submit">Filtrar</button>
         <a href="{{ url_for('visualizar') }}">Limpar filtro</a>
+        <button onclick="exportarExcel()" id="excel-btn">Exportar Excel</button>
     </form>
 
     <br>
 
     <div class="table-container">
-        <table border="1" cellpadding="5">
+        <table border="1" cellpadding="5" id="tabelaVisualizar">
             <tr>
                 <th>ID</th>
                 <th>Email</th>

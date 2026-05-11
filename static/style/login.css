@@ -96,6 +96,8 @@ body::before {
   max-width: 500px;
 }
 
-.login-box button:hover {
-  background-color: #0056b3;
+.login-box button:hover{
+  transform: scale(1.02);
+  box-shadow: 0 0 12px #FFD700;
+  transition: transform 1s ease, box-shadow 0.5s ease;
 }
